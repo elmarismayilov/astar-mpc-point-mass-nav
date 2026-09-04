@@ -3,6 +3,11 @@
 A modular 2D motion planning and control framework for point-mass systems, applicable to drone/quadrotor position control and ground-robot trajectory tracking. The pipeline combines global A* pathfinding on a discrete grid with real-time Receding Horizon Control (RHC) solved via Convex Model Predictive Control (MPC) with linear obstacle-avoidance constraints.
 
 ---
+## Demo
+
+[![Watch the demo](https://img.youtube.com/vi/TH8Gmh5DhIU/maxresdefault.jpg)](https://www.youtube.com/watch?v=TH8Gmh5DhIU)
+
+---
 
 ## System Architecture
 
