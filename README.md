@@ -34,29 +34,33 @@ $$\min_{\mathbf{X}, \mathbf{U}} \sum_{k=0}^{N-1} \left( r \|\mathbf{u}_k\|_2^2 +
 
 **Subject to:**
 
-* Initial state constraint:
+* Initial state constraint
+* Dynamics constraints, $\forall k \in [0, N-1]$
+* Control input limits
+* Speed bounds
+* **Linear Obstacle-Avoidance Constraints:** for each horizon step $k$, a separating half-space constraint is constructed tangent to the nearest obstacle boundary
 
-  $$\mathbf{x}_0 = \mathbf{x}_{\text{start}}$$
+$$
+\mathbf{x}_0 = \mathbf{x}_{\text{start}}
+$$
 
-* Dynamics constraints:
+$$
+\mathbf{x}_{k+1} = \mathbf{A}\mathbf{x}_k + \mathbf{B}\mathbf{u}_k
+$$
 
-  $$\mathbf{x}_{k+1} = \mathbf{A}\mathbf{x}_k + \mathbf{B}\mathbf{u}_k, \quad \forall k \in [0, N-1]$$
+$$
+\|\mathbf{u}_k\|_\infty \le a_{\max}, \qquad \|\mathbf{v}_k\|_2 \le v_{\max}
+$$
 
-* Control input limits:
+$$
+\mathbf{a}_k^T \mathbf{p}_k \le b_k
+$$
 
-  $$\|\mathbf{u}_k\|_\infty \le a_{\max}$$
+Where
 
-* Speed bounds:
-
-  $$\|\mathbf{v}_k\|_2 \le v_{\max}$$
-
-* **Linear Obstacle-Avoidance Constraints:** For each horizon step $k$, a separating half-space constraint is constructed tangent to the nearest obstacle boundary:
-
-  $$\mathbf{a}_k^T \mathbf{p}_k \le b_k$$
-
-  Where
-
-  $$\mathbf{a}_k = \frac{\mathbf{o}_{\text{near}} - \mathbf{p}_{\text{ref}, k}}{\|\mathbf{o}_{\text{near}} - \mathbf{p}_{\text{ref}, k}\|_2}, \quad b_k = \mathbf{a}_k^T (\mathbf{o}_{\text{near}} - \mathbf{a}_k \cdot r_{\text{obs}})$$
+$$
+\mathbf{a}_k = \frac{\mathbf{o}_{\text{near}} - \mathbf{p}_{\text{ref}, k}}{\|\mathbf{o}_{\text{near}} - \mathbf{p}_{\text{ref}, k}\|_2}, \qquad b_k = \mathbf{a}_k^T \left(\mathbf{o}_{\text{near}} - \mathbf{a}_k \, r_{\text{obs}}\right)
+$$
 
 ---
 
